@@ -7,7 +7,7 @@ const CategoryIcons = {
   "Data Integration & Automation": (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-repeat text-[var(--sec)]"><polyline points="17 2 19 4 17 6"></polyline><path d="M3 11v-1a4 4 0 0 1 4-4h14"></path><polyline points="7 22 5 20 7 18"></polyline><path d="M21 13v1a4 4 0 0 1-4 4H3"></path></svg>
   ),
-  "System Architecture": (
+  "API Design & Deployment": (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-network text-[var(--sec)]"><rect x="12" y="5" width="6" height="6" rx="1"/><rect x="6" y="13" width="6" height="6" rx="1"/><rect x="18" y="13" width="6" height="6" rx="1"/><path d="M15 11v2"/><path d="M9 19v2"/><path d="M21 19v2"/></svg>
   ),
 };
@@ -26,10 +26,10 @@ const SkillsList = () => {
       "Third-party API orchestration",
       "Python scripting and automation",
     ],
-    "System Architecture": [
+    "API Design & Deployment": [
       "Database design and optimization",
+      "Docker containerization and CI/CD",
       "Performance profiling and scaling",
-      "Infrastructure as code and DevOps",
     ],
   };
 
