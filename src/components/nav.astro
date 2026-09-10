@@ -137,6 +137,8 @@ const navItems: NavItem[] = [
     { passive: true }
   );
 
+  let isUserScrolling = false;
+
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -144,9 +146,14 @@ const navItems: NavItem[] = [
       const targetId = target.getAttribute("href")?.substring(1) || "";
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
+        isUserScrolling = true;
         targetElement.scrollIntoView({
           behavior: "smooth",
         });
+        // Re-enable observer after scroll completes (roughly 1 second for smooth scroll)
+        setTimeout(() => {
+          isUserScrolling = false;
+        }, 1000);
       }
     });
   });
@@ -157,6 +164,9 @@ const navItems: NavItem[] = [
     const observerOptions = { threshold: [0, 0.6] };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      // Skip observer updates while user is actively scrolling to a clicked link
+      if (isUserScrolling) return;
+
       let mostVisibleEntry = entries[0];
       
       entries.forEach((entry) => {
