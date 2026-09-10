@@ -1,0 +1,147 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '@/layouts/Layout.astro';
+import Nav from '@/components/nav.astro';
+import Footer from '@/components/footer.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: any;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={`${post.data.title} | Chris' Journey`}>
+  <Nav />
+  
+  <div class="max-w-3xl mx-auto py-12 md:py-24 px-4 md:px-0">
+    <article class="text-[var(--white)] space-y-6">
+      {/* Back Link */}
+      <a href="/#blog" class="text-[var(--sec)] hover:text-white transition-colors inline-flex items-center gap-2">
+        ← Back to Blog
+      </a>
+
+      {/* Header */}
+      <header class="space-y-4 pb-8 border-b border-[#ffffff10]">
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+          {post.data.title}
+        </h1>
+        
+        <div class="flex flex-wrap items-center gap-4 text-[var(--white-icon)]">
+          <time class="text-sm">
+            {post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </time>
+          
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2">
+              {post.data.tags.map((tag: string) => (
+                <span class="inline-block bg-[var(--sec)]/20 text-[var(--sec)] text-xs px-2 py-1 rounded">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {post.data.description && (
+          <p class="text-lg text-[var(--white-icon)]">
+            {post.data.description}
+          </p>
+        )}
+      </header>
+
+      {/* Content */}
+      <div class="prose prose-invert max-w-none">
+        <Content />
+      </div>
+
+      {/* Meta */}
+      <footer class="pt-8 border-t border-[#ffffff10]">
+        <div class="flex flex-wrap gap-4">
+          {post.data.categories && post.data.categories.length > 0 && (
+            <div class="flex flex-wrap gap-2">
+              <span class="text-[var(--white-icon)] text-sm font-medium">Categories:</span>
+              {post.data.categories.map((cat: string) => (
+                <span class="text-sm text-[var(--white-icon)]">
+                  {cat}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </footer>
+    </article>
+  </div>
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  .prose {
+    --tw-prose-body: var(--white-icon);
+    --tw-prose-headings: var(--white);
+    --tw-prose-lead: var(--white-icon);
+    --tw-prose-links: var(--sec);
+    --tw-prose-bold: var(--white);
+    --tw-prose-counters: var(--white-icon);
+    --tw-prose-bullets: var(--sec);
+    --tw-prose-hr: #ffffff10;
+    --tw-prose-quotes: var(--white-icon);
+    --tw-prose-quote-borders: var(--sec);
+    --tw-prose-captions: var(--white-icon);
+    --tw-prose-code: var(--white);
+    --tw-prose-pre-bg: #1414149c;
+    --tw-prose-pre-code: var(--white);
+    --tw-prose-th-borders: #ffffff10;
+    --tw-prose-td-borders: #ffffff10;
+  }
+
+  .prose :where(code):not(:where([class~="not-prose"] *)) {
+    background-color: #1414149c;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    color: var(--sec);
+  }
+
+  .prose :where(pre):not(:where([class~="not-prose"] *)) {
+    background-color: #0a0a0a;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+  }
+
+  .prose :where(h2):not(:where([class~="not-prose"] *)) {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose :where(h3):not(:where([class~="not-prose"] *)) {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose :where(p):not(:where([class~="not-prose"] *)) {
+    margin-bottom: 1rem;
+  }
+
+  .prose :where(ul):not(:where([class~="not-prose"] *)) {
+    margin-bottom: 1rem;
+  }
+
+  .prose :where(li):not(:where([class~="not-prose"] *)) {
+    margin-bottom: 0.5rem;
+  }
+</style>

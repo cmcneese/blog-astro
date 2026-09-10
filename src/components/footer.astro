@@ -87,13 +87,18 @@ const currentYear = new Date().getFullYear();
 
       <div class="flex flex-col items-center lg:items-start space-y-6">
         <div class="w-full max-w-xs">
-          <iframe
-            style="border-radius:12px; border:0;"
-            src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0"
-            class="w-full h-40"
-            allowfullscreen=""
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"></iframe>
+          <a
+            href="https://music.apple.com/us/playlist/coding/pl.u-8aAVXLaHZ1KXg"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block p-6 rounded-lg border border-[#ffffff10] hover:border-[var(--sec)] transition-colors duration-300 bg-[#ffffff05] hover:bg-[#ffffff08]"
+          >
+            <div class="flex flex-col gap-3">
+              <div class="text-[var(--sec)] text-sm font-medium">Apple Music</div>
+              <div class="text-[var(--white)] font-semibold">Coding</div>
+              <div class="text-[var(--white-icon)] text-sm">Listen on Apple Music →</div>
+            </div>
+          </a>
         </div>
       </div>
     </div>

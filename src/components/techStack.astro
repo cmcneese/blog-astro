@@ -1,0 +1,135 @@
+---
+---
+
+<section class="text-[var(--white)] py-12 md:py-24">
+  <div class="max-w-5xl mx-auto space-y-12">
+    <div class="space-y-4 text-center md:text-left">
+      <h2 class="text-4xl md:text-5xl font-medium">Technologies & Tools</h2>
+      <p class="text-[var(--white-icon)] text-lg">
+        Languages, frameworks, and platforms I work with daily
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      <!-- Languages -->
+      <div>
+        <h3 class="text-lg font-semibold text-[var(--sec)] mb-4">Languages</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {[
+            { name: "TypeScript", icon: "fab fa-js" },
+            { name: "JavaScript", icon: "fab fa-js" },
+            { name: "PHP", icon: "fab fa-php" },
+            { name: "SQL", icon: "fas fa-database" },
+            { name: "Swift", icon: "fab fa-swift" },
+            { name: "Bash", icon: "fas fa-terminal" },
+          ].map((tech) => (
+            <div class="group relative overflow-hidden rounded-lg border border-[#ffffff10] bg-[#1414149c] p-4 transition-all duration-300 hover:border-[var(--sec)]">
+              <div class="flex flex-col items-center gap-2">
+                <i class={`${tech.icon} text-2xl text-[#a476ff]`}></i>
+                <span class="text-sm font-medium text-[var(--white-icon)] group-hover:text-white">
+                  {tech.name}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Runtimes & Frameworks -->
+      <div>
+        <h3 class="text-lg font-semibold text-[var(--sec)] mb-4">Runtimes & Frameworks</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {[
+            { name: "Node.js", icon: "fab fa-node" },
+            { name: "Laravel", icon: "fab fa-laravel" },
+            { name: "NestJS", icon: "fas fa-cube" },
+            { name: "React", icon: "fab fa-react" },
+            { name: "Next.js", icon: "fas fa-bolt" },
+            { name: "Astro", icon: "fas fa-rocket" },
+          ].map((tech) => (
+            <div class="group relative overflow-hidden rounded-lg border border-[#ffffff10] bg-[#1414149c] p-4 transition-all duration-300 hover:border-[var(--sec)]">
+              <div class="flex flex-col items-center gap-2">
+                <i class={`${tech.icon} text-2xl text-[#a476ff]`}></i>
+                <span class="text-sm font-medium text-[var(--white-icon)] group-hover:text-white">
+                  {tech.name}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Databases & Data -->
+      <div>
+        <h3 class="text-lg font-semibold text-[var(--sec)] mb-4">Databases & Data</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {[
+            { name: "MySQL", icon: "fas fa-database" },
+            { name: "Redis", icon: "fas fa-bolt" },
+            { name: "PostgreSQL", icon: "fas fa-database" },
+            { name: "Query Optimization", icon: "fas fa-zap" },
+            { name: "Data Pipelines", icon: "fas fa-stream" },
+            { name: "Caching", icon: "fas fa-memory" },
+          ].map((tech) => (
+            <div class="group relative overflow-hidden rounded-lg border border-[#ffffff10] bg-[#1414149c] p-4 transition-all duration-300 hover:border-[var(--sec)]">
+              <div class="flex flex-col items-center gap-2">
+                <i class={`${tech.icon} text-2xl text-[#a476ff]`}></i>
+                <span class="text-sm font-medium text-[var(--white-icon)] group-hover:text-white">
+                  {tech.name}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Infrastructure & DevOps -->
+      <div>
+        <h3 class="text-lg font-semibold text-[var(--sec)] mb-4">Infrastructure & DevOps</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {[
+            { name: "Docker", icon: "fab fa-docker" },
+            { name: "AWS", icon: "fab fa-aws" },
+            { name: "CI/CD", icon: "fas fa-gear" },
+            { name: "Git", icon: "fab fa-git-alt" },
+            { name: "Linux", icon: "fab fa-linux" },
+            { name: "Kubernetes", icon: "fas fa-cube" },
+          ].map((tech) => (
+            <div class="group relative overflow-hidden rounded-lg border border-[#ffffff10] bg-[#1414149c] p-4 transition-all duration-300 hover:border-[var(--sec)]">
+              <div class="flex flex-col items-center gap-2">
+                <i class={`${tech.icon} text-2xl text-[#a476ff]`}></i>
+                <span class="text-sm font-medium text-[var(--white-icon)] group-hover:text-white">
+                  {tech.name}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Tools & Practices -->
+      <div>
+        <h3 class="text-lg font-semibold text-[var(--sec)] mb-4">Development Practices</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {[
+            { name: "Testing", icon: "fas fa-flask" },
+            { name: "TDD", icon: "fas fa-check-double" },
+            { name: "Code Review", icon: "fas fa-eye" },
+            { name: "Performance", icon: "fas fa-tachometer-alt" },
+            { name: "Documentation", icon: "fas fa-book" },
+            { name: "Agile", icon: "fas fa-tasks" },
+          ].map((tech) => (
+            <div class="group relative overflow-hidden rounded-lg border border-[#ffffff10] bg-[#1414149c] p-4 transition-all duration-300 hover:border-[var(--sec)]">
+              <div class="flex flex-col items-center gap-2">
+                <i class={`${tech.icon} text-2xl text-[#a476ff]`}></i>
+                <span class="text-sm font-medium text-[var(--white-icon)] group-hover:text-white">
+                  {tech.name}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
