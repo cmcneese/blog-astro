@@ -157,16 +157,27 @@ const navItems: NavItem[] = [
     const observerOptions = { threshold: [0, 0.6] };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      let mostVisibleEntry = entries[0];
+      
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          navLinks.forEach((link) => link.classList.remove("active"));
-          const id = entry.target.getAttribute("id");
-          const activeLink = document.querySelector(`nav a[href="#${id}"]`);
-          if (activeLink) {
-            activeLink.classList.add("active");
+          const currentRatio = entry.intersectionRatio;
+          const mostVisibleRatio = mostVisibleEntry.intersectionRatio;
+          
+          if (currentRatio > mostVisibleRatio) {
+            mostVisibleEntry = entry;
           }
         }
       });
+
+      if (mostVisibleEntry && mostVisibleEntry.isIntersecting) {
+        navLinks.forEach((link) => link.classList.remove(\"active\"));
+        const id = mostVisibleEntry.target.getAttribute(\"id\");
+        const activeLink = document.querySelector(`nav a[href=\"#${id}\"]`);
+        if (activeLink) {
+          activeLink.classList.add(\"active\");
+        }
+      }
     };
 
     const observer = new IntersectionObserver(
