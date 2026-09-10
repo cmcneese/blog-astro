@@ -41,7 +41,7 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDa
 
             {post.data.tags && post.data.tags.length > 0 && (
               <div class="flex flex-wrap gap-2 pt-2">
-                {post.data.tags.map((tag) => (
+                {post.data.tags.map((tag: string) => (
                   <span class="inline-block bg-[var(--sec)]/20 text-[var(--sec)] text-xs px-2 py-1 rounded">
                     {tag}
                   </span>
