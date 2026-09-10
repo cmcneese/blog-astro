@@ -181,11 +181,11 @@ const navItems: NavItem[] = [
       });
 
       if (mostVisibleEntry && mostVisibleEntry.isIntersecting) {
-        navLinks.forEach((link) => link.classList.remove(\"active\"));
-        const id = mostVisibleEntry.target.getAttribute(\"id\");
-        const activeLink = document.querySelector(`nav a[href=\"#${id}\"]`);
+        navLinks.forEach((link) => link.classList.remove('active'));
+        const id = mostVisibleEntry.target.getAttribute('id');
+        const activeLink = document.querySelector(`nav a[href="#${id}"]`);
         if (activeLink) {
-          activeLink.classList.add(\"active\");
+          activeLink.classList.add('active');
         }
       }
     };
