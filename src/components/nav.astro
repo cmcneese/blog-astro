@@ -154,19 +154,32 @@ const navItems: NavItem[] = [
   document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll("nav a[href^='#']");
-    const observerOptions = { threshold: 0.6 };
+    const observerOptions = { threshold: [0.5, 0.75] };
+
+    // Set initial active state to Home
+    const homeLink = document.querySelector("nav a[href='#home']");
+    if (homeLink) {
+      homeLink.classList.add("active");
+    }
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      // Find the most visible section
+      let mostVisibleEntry = entries[0];
+      
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navLinks.forEach((link) => link.classList.remove("active"));
-          const id = entry.target.getAttribute("id");
-          const activeLink = document.querySelector(`nav a[href="#${id}"]`);
-          if (activeLink) {
-            activeLink.classList.add("active");
-          }
+        if (entry.isIntersecting && entry.intersectionRatio > mostVisibleEntry.intersectionRatio) {
+          mostVisibleEntry = entry;
         }
       });
+
+      if (mostVisibleEntry && mostVisibleEntry.isIntersecting) {
+        navLinks.forEach((link) => link.classList.remove("active"));
+        const id = mostVisibleEntry.target.getAttribute("id");
+        const activeLink = document.querySelector(`nav a[href="#${id}"]`);
+        if (activeLink) {
+          activeLink.classList.add("active");
+        }
+      }
     };
 
     const observer = new IntersectionObserver(
