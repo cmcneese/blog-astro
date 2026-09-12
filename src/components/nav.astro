@@ -152,41 +152,30 @@ const navItems: NavItem[] = [
   });
 
   document.addEventListener("DOMContentLoaded", () => {
-    const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll("nav a[href^='#']");
-    const observerOptions = { threshold: [0.5, 0.75] };
+    const sectionIds = ["home", "blog", "contact"];
 
-    // Set initial active state to Home
-    const homeLink = document.querySelector("nav a[href='#home']");
-    if (homeLink) {
-      homeLink.classList.add("active");
-    }
+    function updateActiveSection() {
+      const referencePoint = window.innerHeight * 0.35;
+      let activeSectionId = "home";
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      // Find the most visible section
-      let mostVisibleEntry = entries[0];
-      
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.intersectionRatio > mostVisibleEntry.intersectionRatio) {
-          mostVisibleEntry = entry;
+      sectionIds.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section && section.getBoundingClientRect().top <= referencePoint) {
+          activeSectionId = id;
         }
       });
 
-      if (mostVisibleEntry && mostVisibleEntry.isIntersecting) {
-        navLinks.forEach((link) => link.classList.remove("active"));
-        const id = mostVisibleEntry.target.getAttribute("id");
-        const activeLink = document.querySelector(`nav a[href="#${id}"]`);
-        if (activeLink) {
-          activeLink.classList.add("active");
-        }
-      }
-    };
+      navLinks.forEach((link) => link.classList.remove("active"));
+      const activeLink = document.querySelector(
+        `nav a[href="#${activeSectionId}"]`
+      );
+      activeLink?.classList.add("active");
+    }
 
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions
-    );
-    sections.forEach((section) => observer.observe(section));
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
   });
 </script>
 
